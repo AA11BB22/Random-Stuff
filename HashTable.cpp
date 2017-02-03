@@ -8,12 +8,13 @@
  * 1. Constructor requires a hash function and 
  *    an optional integer for size of table.
  *    (duplicates are allowed)
+ *    (chaining via linked list)
  *
  * 2. Member Functions:
- *    - insert
- *    - find
- *    - size
- *    - display
+ *    - insert, O(1)
+ *    - find, O(n)
+ *    - size, n
+ *    - display, O(n)
  */
 template<class T>
 class HashTable {
