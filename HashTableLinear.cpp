@@ -3,10 +3,18 @@
 
 /**
  * Hash Table Container
+ * 
+ * 1. Constructor requires a hash function or
+ *    integer conversion of the data type and 
+ *    an optional integer for size of table.
+ *    (duplicates are allowed)
+ *    (linear probing)
  *
- * Constructor requires a hash function,
- *    optionally uses integer conversion of the item 
- *    and an optional integer for size of table.
+ * 2. Member Functions:
+ *    - insert, O(n)
+ *    - find, O(n)
+ *    - size, n
+ *    - display, O(n)
  */
 template<class T>
 class HashTableLinear {
