@@ -41,6 +41,13 @@ public:
         this->f = f;
     }
     
+    // Destructor
+    ~HashTable() {
+        
+        delete this->table;
+        this->table = nullptr;
+    }
+    
     // Insert to hash table.
     bool insert(const T& item) {
         
