@@ -44,7 +44,7 @@ public:
     // Destructor
     ~HashTable() {
         
-        delete this->table;
+        delete[] this->table;
         this->table = nullptr;
     }
     
@@ -100,11 +100,11 @@ public:
 
 const int size = 10;
 
-int hashFunction(std::string url) {
+int hashFunction(std::string text) {
     
     int value = 0;
-    for (int i = 0; i < (int) url.length(); ++i) {
-        value += (url.at(i) * 31);
+    for (int i = 0; i < (int) text.length(); ++i) {
+        value += (text.at(i) * 31);
     }
     
     return value % size;
