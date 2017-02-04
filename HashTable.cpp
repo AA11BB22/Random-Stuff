@@ -81,12 +81,14 @@ public:
     
     // Print items.
     void display() const {
-        
+
         std::cout << "List of items:" << std::endl;
         for (int i = 0; i < this->n; ++i) {
+            std::cout << i << " -> ";
             for (auto it = table[i].begin(); it != table[i].end(); ++it) {
-                std::cout << *it << std::endl;
+                std::cout << *it << " -> ";
             }
+            std::cout << std::endl;
         }
     }
 };
