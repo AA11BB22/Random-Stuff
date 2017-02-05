@@ -30,14 +30,36 @@ private:
     // Hash function.
     typedef int (*hashFunction)(T);
     hashFunction f;
+    
+    // Primality test (slow for large numbers)
+    bool is_prime(int number) {
+        
+        if (number <  2) return false;
+        else if (number < 4) return true;
+        else if (number % 2 == 0 || number % 3 == 0) return false;
+        
+        int i = 5;
+        while (i * i <= number) {
+            if (number % i == 0 || number % (i + 2) == 0) return false;
+            i = i + 6;
+        }
+        return true;
+    }
+    
+    int get_prime(int number) {
+        
+        if (number < 11) return 11;
+        
+        while (!is_prime(number)) ++number;
+        return number;
+    }
 
 public:
     // Constructor
     HashTableLinear(hashFunction f = [](T item)->int{return (int)(item);}, int n = 1001) {
         
         // Initialization.
-        if (n <= 10) n = 11;
-        else this->n = n;
+        this->n = get_prime(n);
         this->current = 0;
         this->occupied = new bool[n]; // all false by default
         this->table = new T[n];
@@ -76,7 +98,7 @@ public:
         if ((int)(n * 0.85) < current) {
             
             int temp_size = n;
-            n = n * 2 + 1;
+            n = get_prime(n * 2 + 1);
             
             bool* temp_occupied = occupied;
             occupied = new bool[n];
@@ -201,5 +223,4 @@ int main() {
     std::cout << std::boolalpha << "40 in table, " << hash.find("40") << std::endl;
     
     std::cout << hash.size() << std::endl;
-
 }
