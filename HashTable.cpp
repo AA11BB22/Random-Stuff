@@ -52,11 +52,10 @@ public:
     bool insert(const T& item) {
         
         // Index of item.
-        int index = f(item);
-        
-        if (index >= n) return false;
+        int index = f(item) % n;
         
         ++current;
+        
         table[index].push_front(item);
         return true;
     }
@@ -64,7 +63,7 @@ public:
     // Search.
     bool find(const T& item) const {
         
-        int index = f(item);
+        int index = f(item) % n;
         for (auto it = table[index].begin(); it != table[index].end(); ++it) {
             if (item == *it) {
                 return true;
