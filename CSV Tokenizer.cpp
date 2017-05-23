@@ -5,7 +5,7 @@ using namespace std;
 
 const char value_delim = ',';
 const char string_delim = '\"';
-const string spaces = " \r\t";
+const string spaces = " \t";
 
 std::string trim(const string &s)
 {
