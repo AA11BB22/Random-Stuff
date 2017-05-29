@@ -7,13 +7,13 @@ const char value_delim = ',';
 const char string_delim = '\"';
 const string spaces = " \t";
 
-std::string trim(const string &s)
+string trim(const string &s)
 {
     size_t start = s.find_first_not_of(spaces);
     size_t end = s.find_last_not_of(spaces) + 1;
 
     if (start < end) return s.substr(start, end);
-    else return s;
+    else return "";
 }
 
 int main()
