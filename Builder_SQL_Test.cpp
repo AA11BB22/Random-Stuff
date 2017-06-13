@@ -10,7 +10,6 @@ class Database
 public:
     class SQL;
     
-    void ResetQuery() { m_szQuery = ""; }
     string GetQuery() const { return m_szQuery; }
     
 private:
