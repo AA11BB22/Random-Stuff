@@ -25,19 +25,29 @@ static const string AND = " AND ";
 class Database::SQL
 {
 public:
-    SQL() { }
+    SQL()
+    {
+        m_szQuery = "";
+        m_bSelect = true;
+        m_bFrom = true;
+        m_bWhere = true;
+    }
+    
     Database EndSQL();
     
     template<class T>
     SQL SELECT(T tail)
     {
         m_szQuery += (string) tail;
+        m_bSelect = false;
         return *this;
     }
     
     template<class T, class... Ts>
     SQL SELECT(T head, Ts... tail)
     {
+        assert(m_bSelect);
+        
         if (m_szQuery.length() == 0) m_szQuery += "SELECT ";
         m_szQuery += ((string) head + ", ");
         return SELECT(tail...);
@@ -45,13 +55,19 @@ public:
     
     SQL FROM(const string &szDatabase)
     {
+        assert(m_bFrom);
+        
         m_szQuery += (" FROM " + szDatabase);
+        m_bFrom = false;
         return *this;
     }
     
     SQL WHERE()
     {
+        assert(m_bWhere);
+        
         m_szQuery += " WHERE ";
+        m_bWhere = false;
         return *this;
     }
     
@@ -66,6 +82,10 @@ public:
 private:
     string m_szQuery;
     stack<string> m_Operations;
+    
+    bool m_bSelect;
+    bool m_bFrom;
+    bool m_bWhere;
 };
 
 Database::SQL Database::SQL::StartOR()
