@@ -55,29 +55,29 @@ public abstract class Heap<T> implements Comparator<T>
     
     public void update(final T oldItem, final T newItem)
     {
-    		if (!set.contains(oldItem))
-    		{
-    			return;
-    		}
-    		
-    		// Since it's already "sorted" ... use a binary-like search.
-    		// But for now ... going to just exhaustive search.
-    		for (int i = 0; i < list.size(); i ++)
-    		{
-    			if (list.get(i).equals(oldItem))
-    			{    				
-    				set.remove(oldItem);
-    				set.add(newItem);
-    				
-    				list.set(i, newItem);
-    				break;
-    			}
-    		}
-    		
-    		for (int i = parent(list.size() - 1); i >= 0; i --)
-    		{
-    			moveDown(i);
-    		}
+        if (!set.contains(oldItem))
+        {
+            return;
+        }
+        
+        // Since it's already "sorted" ... use a binary-like search.
+        // But for now ... going to just exhaustive search.
+        for (int i = 0; i < list.size(); i ++)
+        {
+            if (list.get(i).equals(oldItem))
+            {
+                set.remove(oldItem);
+                set.add(newItem);
+                
+                list.set(i, newItem);
+                break;
+            }
+        }
+        
+        for (int i = parent(list.size() - 1); i >= 0; i --)
+        {
+            moveDown(i);
+        }
     }
     
     private int parent(final int index)
