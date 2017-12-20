@@ -55,9 +55,9 @@ public abstract class Heap<T> implements Comparator<T>
     
     public void update(final T oldItem, final T newItem)
     {
-        if (!set.contains(oldItem))
+        if (!set.contains(oldItem) || set.contains(newItem))
         {
-            return;
+        		return;
         }
         
         // Since it's already "sorted" ... use a binary-like search.
@@ -157,6 +157,8 @@ public abstract class Heap<T> implements Comparator<T>
         }
         
         h.update(0, 100);
+        h.update(1, 50);
+        h.update(5, 1);
         
         while (h.size() > 0)
         {
