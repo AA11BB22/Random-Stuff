@@ -18,7 +18,7 @@ class ListWrapper<T> implements Iterable<T>
     
     public boolean equals(final Iterable<T> other)
     {
-    		if (this.getClass() != other.getClass())
+        if (this.getClass() != other.getClass())
         {
             return false;
         }
@@ -27,7 +27,7 @@ class ListWrapper<T> implements Iterable<T>
         Iterator<T> itOther = other.iterator();
         
         try
-        {   
+        {
             while (itThis.hasNext() && itOther.hasNext())
             {
                 if (itThis.next() != itOther.next())

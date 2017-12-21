@@ -57,7 +57,7 @@ public abstract class Heap<T> implements Comparator<T>
     {
         if (!set.contains(oldItem) || set.contains(newItem))
         {
-        		return;
+            return;
         }
         
         // Since it's already "sorted" ... use a binary-like search.
